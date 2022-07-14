@@ -8,7 +8,7 @@ will::IOManager::ptr worker;
 
 void run() {
     g_logger->setLevel(will::LogLevel::INFO);
-    //will::http::HttpServer::ptr server(new will::http::HttpServer(true, worker.get(), will::IOManager::GetThis()));
+    
     will::http::HttpServer::ptr server(new will::http::HttpServer(true));
     will::Address::ptr addr = will::Address::LookupAnyIPAddress("0.0.0.0:8020");
     while (!server->bind(addr)) {
