@@ -155,20 +155,6 @@ private:
     pthread_mutex_t m_mutex;
 };
 
-class NullMutex : Noncopyable{
-public:
-    // 局部锁
-    typedef ScopedLockImpl<NullMutex> Lock;
-
-    NullMutex() {}
-
-    ~NullMutex() {}
-
-    void lock() {}
-
-    void unlock() {}
-};
-
 class RWMutex : Noncopyable{
 public:
     // 局部读锁
@@ -199,24 +185,6 @@ public:
 private:
     // 读写锁
     pthread_rwlock_t m_lock;
-};
-
-class NullRWMutex : Noncopyable {
-public:
-    // 局部读锁
-    typedef ReadScopedLockImpl<NullMutex> ReadLock;
-    // 局部写锁
-    typedef WriteScopedLockImpl<NullMutex> WriteLock;
-
-    NullRWMutex() {}
-
-    ~NullRWMutex() {}
-
-    void rdlock() {}
-
-    void wrlock() {}
-
-    void unlock() {}
 };
 
 class Spinlock : Noncopyable {
